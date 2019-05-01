@@ -28,6 +28,19 @@ services:
     depends_on:
       - scavengerdb
 
+  helpdesk:
+    build: src
+    ports:
+      - "32080:80"
+      - "32443:80"
+    volumes:
+      - ./src/helpdesk:/var/www/html
+    links:
+      - basicdb
+    depends_on:
+      - basicdb
+
+
   basicdb:
     image: mysql:5.7
     volumes:
