@@ -18,4 +18,13 @@ The one configuration item that is necessary is on your local host (i.e. not the
    ```
    127.0.0.1       dojo-basic
    127.0.0.1       dojo-scavenger
+   127.0.0.1       dojo-helpdesk
    ```
+
+============
+
+   Local access via the vagrant machine is:
+
+   http://127.0.0.1:30080 for dojo-basic
+   http://127.0.0.1:31080 for dojo-scavenger
+   http://127.0.0.1:32080 for helpdesk
