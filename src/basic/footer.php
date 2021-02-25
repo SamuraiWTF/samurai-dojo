@@ -10,7 +10,7 @@ include 'closedb.inc';
 <div class="row" id="footerbar">
     Originally Created by Justin Searle<br/>
     Maintained by the SamuraiWTF team<br />
-Samurai Dojo-Basic is a <a href="http://github.com/SmauraiWTF" target="_blank">SamuraiWTF</a> Project.
+Samurai Dojo-Basic is a <a href="http://github.com/SamuraiWTF" target="_blank">SamuraiWTF</a> Project.
 </div>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
