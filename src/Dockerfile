@@ -1,4 +1,4 @@
-FROM php:7.3.3-apache
+FROM php:7.4.27-apache-bullseye
 
 RUN docker-php-ext-install pdo_mysql mysqli
 
