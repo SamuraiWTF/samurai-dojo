@@ -1,0 +1,22 @@
+version: '3'
+services:
+  scavengerdb:
+    build:
+      context: ..
+      dockerfile: .shogun/Dockerfile.dojo-scavenger-db
+    environment:
+      MYSQL_ROOT_PASSWORD: samurai
+      MYSQL_DATABASE: samurai_dojo_scavenger
+
+  dojo-scavenger:
+    build:
+      context: ..
+      dockerfile: .shogun/Dockerfile.dojo-scavenger
+    ports:
+      - "8081:80"
+    links:
+      - scavengerdb
+    depends_on:
+      - scavengerdb
+
+

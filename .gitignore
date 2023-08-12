@@ -1,3 +1,4 @@
 .vagrant
 ubuntu*.log
 *.retry
+.idea
