@@ -1,0 +1,4 @@
+# Dockerfile.dojo-basic--db
+FROM mysql:latest
+COPY .shogun/dojo-basic.sql /docker-entrypoint-initdb.d/
+

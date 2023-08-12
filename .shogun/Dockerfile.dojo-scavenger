@@ -1,0 +1,18 @@
+# Dockerfile.dojo-scavenger
+FROM php:7.4.27-apache-bullseye as builder
+
+# Copy everything first to a temporary stage
+COPY ./src/scavenger /var/www/temp
+
+# Remove the files that we don't want
+RUN rm /var/www/temp/scavenger.sql
+
+FROM php:7.4.27-apache-bullseye
+
+# Copy only the remaining files from the temporary stage
+COPY --from=builder /var/www/temp /var/www/html
+
+RUN docker-php-ext-install pdo_mysql mysqli
+RUN apt-get update && apt-get install -y dnsutils
+
+

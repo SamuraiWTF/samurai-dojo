@@ -1,0 +1,4 @@
+# Dockerfile.dojo-scavenger--db
+FROM mysql:latest
+COPY ./src/scavenger/scavenger.sql /docker-entrypoint-initdb.d/scavenger.sql
+

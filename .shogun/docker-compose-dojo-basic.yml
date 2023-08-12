@@ -1,0 +1,22 @@
+version: '3'
+services:
+  basicdb:
+    build:
+      context: ..
+      dockerfile: .shogun/Dockerfile.dojo-basic-db
+    environment:
+      MYSQL_ROOT_PASSWORD: samurai
+      MYSQL_DATABASE: samurai_dojo_basic
+
+  dojo-basic:
+    build:
+      context: ..
+      dockerfile: .shogun/Dockerfile.dojo-basic
+    ports:
+      - "8080:80"
+    links:
+      - basicdb
+    depends_on:
+      - basicdb
+
+
