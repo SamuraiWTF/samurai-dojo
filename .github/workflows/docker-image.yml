@@ -24,5 +24,5 @@ jobs:
 
     - name : Build and push basicphp image
       run: |
-        docker build . --file .shogun/Dockerfile.dojo-basic --tag dojo-basic:$(date +%s)
+        docker build . --file .shogun/Dockerfile.dojo-basic --tag ghcr.io/samuraiwtf/dojo-basic:$(date +%s)
         docker push ghcr.io/samuraiwtf/dojo-basic:latest
