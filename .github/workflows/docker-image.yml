@@ -28,7 +28,7 @@ jobs:
         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-        [ "$VERSION" == "main" ] && VERSION=latest
+        [ "$VERSION" == "master" ] && VERSION=latest
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
         docker build . --file .shogun/Dockerfile.dojo-basic --tag dojo-basic
@@ -41,9 +41,35 @@ jobs:
         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-        [ "$VERSION" == "main" ] && VERSION=latest
+        [ "$VERSION" == "master" ] && VERSION=latest
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
         docker build . --file .shogun/Dockerfile.dojo-basic-db --tag dojo-basic-db
         docker tag dojo-basic-db $IMAGE_ID:$VERSION
-        docker push $IMAGE_ID:$VERSION      
+        docker push $IMAGE_ID:$VERSION
+
+    - name : Build and push scavengerphp image
+      run: |
+        IMAGE_ID=ghcr.io/${{ github.repository_owner }}/dojo-scavenger
+        IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+        [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+        [ "$VERSION" == "master" ] && VERSION=latest
+        echo IMAGE_ID=$IMAGE_ID
+        echo VERSION=$VERSION
+        docker build . --file .shogun/Dockerfile.dojo-scavenger --tag dojo-scavenger
+        docker tag dojo-scavenger $IMAGE_ID:$VERSION
+        docker push $IMAGE_ID:$VERSION
+
+    - name : Build and push scavengerdb image
+      run: |
+        IMAGE_ID=ghcr.io/${{ github.repository_owner }}/dojo-scavenger-db
+        IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+        [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+        [ "$VERSION" == "master" ] && VERSION=latest
+        echo IMAGE_ID=$IMAGE_ID
+        echo VERSION=$VERSION
+        docker build . --file .shogun/Dockerfile.dojo-scavenger-db --tag dojo-scavenger-db
+        docker tag dojo-scavenger-db $IMAGE_ID:$VERSION
+        docker push $IMAGE_ID:$VERSION
