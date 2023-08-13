@@ -15,4 +15,8 @@ COPY --from=builder /var/www/temp /var/www/html
 RUN docker-php-ext-install pdo_mysql mysqli
 RUN apt-get update && apt-get install -y dnsutils
 
+LABEL org.opencontainers.image.source=https://github.com/SamuraiWTF/samurai-dojo
+LABEL org.opencontainers.image.description="Basic PHP 7.4.27-apache-bullseye image with dojo-scavenger and mysql support."
+LABEL org.opencontainers.image.licenses="lgpl"
+
 

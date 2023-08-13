@@ -2,3 +2,6 @@
 FROM mysql:latest
 COPY ./src/scavenger/scavenger.sql /docker-entrypoint-initdb.d/scavenger.sql
 
+LABEL org.opencontainers.image.source=https://github.com/SamuraiWTF/samurai-dojo
+LABEL org.opencontainers.image.description="Database image for dojo-scavenger."
+LABEL org.opencontainers.image.licenses="lgpl"

@@ -2,3 +2,6 @@
 FROM mysql:latest
 COPY .shogun/dojo-basic.sql /docker-entrypoint-initdb.d/
 
+LABEL org.opencontainers.image.source=https://github.com/SamuraiWTF/samurai-dojo
+LABEL org.opencontainers.image.description="Database image for dojo-basic."
+LABEL org.opencontainers.image.licenses="lgpl"
