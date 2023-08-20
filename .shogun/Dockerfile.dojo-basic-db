@@ -1,6 +1,8 @@
 # Dockerfile.dojo-basic--db
 FROM mysql:latest
 COPY .shogun/dojo-basic.sql /docker-entrypoint-initdb.d/
+COPY .shogun/my.cnf /etc/mysql/my.cnf
+RUN chown -R mysql:mysql /var/lib/mysql
 
 LABEL org.opencontainers.image.source=https://github.com/SamuraiWTF/samurai-dojo
 LABEL org.opencontainers.image.description="Database image for dojo-basic."
