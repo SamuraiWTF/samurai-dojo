@@ -1,13 +1,21 @@
 <div class="page-title"><h2>Account Details</h2></div>
 
 <?php
+
 $password = $_REQUEST["password"];
 $signature = $_REQUEST["signature"];
 $cid = base64_decode($_COOKIE["uid"]);
 if ($password <> "") {
-	$query = "UPDATE accounts SET password='" . $password . "', mysignature='" . $signature . "' WHERE cid='" . $cid . "'";
-	$result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);
-	header("Location: ".$_SERVER['SCRIPT_NAME']."?".$_SERVER['QUERY_STRING']);
+    $query = "UPDATE accounts SET password='" . $password . "', mysignature='" . $signature . "' WHERE cid='" . $cid . "'";
+    $result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);
+    // Output success message that the information was updated
+    echo '<div class="alert alert-success" role="alert">Account information updated!</div>';
+    // header("Location: ".$_SERVER['SCRIPT_NAME']."?".$_SERVER['QUERY_STRING']);
+} else {
+    // Output error message that the password must be filled in
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        echo '<div class="alert alert-danger" role="alert">Password must contain a value!</div>';
+    }
 }
 
 ?>

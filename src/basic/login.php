@@ -4,8 +4,18 @@ If you do not have an account, <a href="?page=register.php">Register</a><p>
 if ($failedloginflag==1) {
 	echo '<h1><font color="#ff0000">Bad user name or password!</font></h1>';
 }
-echo "<form method=\"POST\" action=\"" .$_SERVER['SCRIPT_NAME'] . "?" . $_SERVER['QUERY_STRING'] . "\">";
+
+$tag = isset($_GET['tag']) ? $_GET['tag'] : 'basic';
+$query_string = $_SERVER['QUERY_STRING'];
+$action_tag = $tag;
+if (preg_match('/\b\w+\b/', $tag, $matches)) {
+    $action_tag = $matches[0];
+}
+$action_url = $_SERVER['SCRIPT_NAME'] . "?" . $query_string . "&tag=" . $action_tag;
+
 ?>
+<form method="POST" action="<?php echo $action_url; ?>">
+    <input type="hidden" name="tag" value="<?php echo htmlspecialchars_decode($tag, ENT_IGNORE); ?>" />
 	<p>Enter your username and password:</p>
 	<p>Name:<br><input type="text" name="user_name" size="20"></p>
 	<p>Password:<br><input type="password" name="password" size="20"></p>
