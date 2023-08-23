@@ -6,6 +6,7 @@ echo "<form method=\"POST\" action=\"" .$_SERVER['SCRIPT_NAME'] . "?" . $_SERVER
 $query  = "SELECT * FROM accounts";
 $result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);;
 //echo $result;
+echo '<div class="blog-controls">';
 echo '<p>Show only:<select size="1" name="show_only_user">';
 echo '<option value="">Choose someone</option>\n';
 echo '<option value="Show All Users">Show All Users</option>\n';
@@ -14,7 +15,7 @@ while($row = $result->fetch_assoc())
     echo '<option value="' . $row['username'] . '">' . $row['username'] . '</option>\n';
 
 }
-echo '</select><input type="submit" value="Submit" name="Submit_button">';
+echo '</select><input type="submit" value="Submit" name="Submit_button"></div>';
 
 ?>
 <?php

@@ -1,20 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333333;
+    line-height: 1.6;
+    background-color: #ffffff;
+}
+
 #titlebar {
     text-align: center;
-    color: darkblue;
-    background-color: lightblue;
+    color: #ffffff;
+    background-color: #003366;
+    padding: 15px 0;
 }
 
 #footerbar {
     text-align: center;
+    padding: 10px 0;
+    background-color: #e6f7ff;
 }
 
 #title-error {
-    color: lightcoral;
+    color: #ff9900; /* Accent color for error messages */
 }
 
 .sidenav {
-    color: dimgrey;
-    background-color: lightblue;
+    color: #333333;
+    background-color: #e6f7ff;
+    padding: 15px;
 }
 
 .menu-heading {
@@ -22,14 +33,68 @@
 }
 
 .nav-pills a {
-    color: darkslateblue;
+    color: #003366;
+    padding: 5px;
+    display: block;
+    transition: all 0.3s ease;
 }
 
 .nav-pills a:hover {
-    color:cornflowerblue;
-    background-color: beige;
+    color: #ff9900;
+    background-color: #f0f0f0;
 }
 
 .page-title {
     text-align: center;
+    font-size: 24px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    width: 100%;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    padding: 10px 15px;
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #e68a00; /* Darker shade of orange */
+}
+
+.blog-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.blog-controls p {
+    margin-right: 10px; /* Add spacing between the label and the dropdown */
+}
+
+.blog-controls select {
+    margin-right: 10px; /* Add spacing between the dropdown and the submit button */
+    padding: 5px; /* Add padding for a comfortable click area */
+}
+
+.blog-controls input[type="submit"] {
+    background-color: #ff9900; /* Accent color */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.blog-controls input[type="submit"]:hover {
+    background-color: #e68a00; /* Darker shade of orange */
 }
