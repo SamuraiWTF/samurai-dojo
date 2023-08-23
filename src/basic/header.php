@@ -7,6 +7,11 @@ $username = $_REQUEST["user_name"];
 $password = $_REQUEST["password"];
 $dosomething = $_REQUEST["do"];
 
+$page = isset($_GET['page']) ? $_GET['page'] : '';
+if ($page === "login.php") {
+    header("Content-Security-Policy: script-src 'self'");
+}
+
 if ($username <> "" and $password <> "") {
 	$query  = "SELECT * FROM accounts WHERE username='". $username ."' AND password='".stripslashes($password)."'";
 	$result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);
@@ -35,6 +40,11 @@ if ($username <> "" and $password <> "") {
 	} else {
 		$failedloginflag=1;
 	}
+
+	if ($failedloginflag == 1) {
+        $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+        echo '<meta http-equiv="refresh" content="0;url=index.php?page=login.php&tag=' . $tag . '">';
+    }
 }
 
 switch ($dosomething) {
