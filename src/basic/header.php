@@ -120,7 +120,6 @@ if ($dosomething  == "logout") {
 		<li><a href="?page=add-to-your-blog.php">Blog Entry</a></li>
 		<li><a href="?page=view-someones-blog.php">View Blogs</a></li>
 		<li><a href="?page=text-file-viewer.php">Reading Room</a></li>
-		<li><a href="snake/">Play Snake</a></li>
         <li><a href="?do=logout">Logout</a></li>
            <hr/><h4><div class="menu-heading">User Utilities</div></h4>
         <li><a href="?page=browser-info.php">Browser Info</a></li>
