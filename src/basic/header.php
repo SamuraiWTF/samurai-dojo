@@ -117,6 +117,7 @@ if ($dosomething  == "logout") {
 		<li><a href="?page=login.php&returnURL=<?php echo $_SERVER['SCRIPT_NAME']; ?>">Login</a></li>
      <?php }; if ($_COOKIE["sessionid"]) { ?>
             <li><a href="?page=user-info.php">User Info</a></li>
+            <li><a href="?page=employee-directory.php">Employee Directory</a></li>
 		<li><a href="?page=add-to-your-blog.php">Blog Entry</a></li>
 		<li><a href="?page=view-someones-blog.php">View Blogs</a></li>
 		<li><a href="?page=text-file-viewer.php">Reading Room</a></li>
