@@ -47,6 +47,7 @@ body {
 .page-title {
     text-align: center;
     font-size: 24px;
+    margin-bottom: 20px;
 }
 
 input[type="text"],
@@ -97,4 +98,80 @@ input[type="submit"]:hover {
 
 .blog-controls input[type="submit"]:hover {
     background-color: #e68a00; /* Darker shade of orange */
+}
+
+/* New styles for the employee directory table */
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.employee-table th,
+.employee-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.employee-table th {
+    background-color: #003366;
+    color: white;
+}
+
+.employee-table th a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.employee-table th a:hover {
+    color: #ff9900;
+}
+
+.employee-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.employee-table tr:hover {
+    background-color: #e6f7ff;
+}
+
+.employee-table td a {
+    color: #003366;
+    text-decoration: none;
+}
+
+.employee-table td a:hover {
+    color: #ff9900;
+    text-decoration: underline;
+}
+
+/* Sorting indicators */
+.sort-indicator {
+    margin-left: 5px;
+}
+
+/* Sorting indicators */
+.sort-indicator {
+    margin-left: 5px;
+}
+
+/* General spacing improvements */
+.main-content {
+    padding: 20px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* Hint section styling */
+.hint {
+    background-color: #FFFF00;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
 }
