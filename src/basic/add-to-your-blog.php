@@ -11,7 +11,7 @@ echo "<form method=\"POST\" action=\"" .$_SERVER['SCRIPT_NAME'] . "?" . $_SERVER
 
 <?php
 // Grab inputs
-$inputfromform = $conn->real_escape_string($_REQUEST["input"]);
+$inputfromform = db_escape_string($conn, $_REQUEST["input"]);
 $showonlyuser =  $_REQUEST["show_only_user"];
 
 if ($inputfromform  <> "") {
@@ -20,7 +20,7 @@ if ($inputfromform  <> "") {
 		$inputfromform  . "', " .
 		" now() )";
 
-$result = $conn->query($query);
+$result = db_query($conn, $query);
 }
 
 $query  = "SELECT * FROM blogs_table WHERE
@@ -28,11 +28,11 @@ $query  = "SELECT * FROM blogs_table WHERE
 		ORDER BY date DESC
 		LIMIT 0 , 100";
 		
-$result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);;
+$result = db_query($conn, $query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);;
 //echo $result;
 
 echo 'Entries:<p>';
-while($row = $result->fetch_assoc())
+while($row = db_fetch_assoc($result))
 {
 echo "<p><b>{$row['blogger_name']}:</b>({$row['date']})<br>{$row['comment']}</p>";
 }

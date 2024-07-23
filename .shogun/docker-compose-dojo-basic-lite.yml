@@ -1,0 +1,12 @@
+version: '3'
+services:
+  dojo-basic-lite:
+    build:
+      context: ..
+      dockerfile: .shogun/Dockerfile.dojo-basic-lite
+    ports:
+      - "8080:80"
+    environment:
+      - DOJO_DB_TYPE=sqlite
+    volumes:
+      - ./sqlite_data:/var/www/html/db

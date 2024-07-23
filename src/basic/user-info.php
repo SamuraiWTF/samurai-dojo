@@ -22,9 +22,9 @@ if ($password <> "") {
 
 <?php
 $query = "SELECT * FROM accounts WHERE cid='". $cid ."'";
-$result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);
-if ($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) { ?>
+$result = db_query($conn, $query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);
+if (db_num_rows($result) > 0) {
+	while($row = db_fetch_assoc($result)) { ?>
 
 <form class="form-horizontal" method="POST" action="<?php echo "{$_SERVER['SCRIPT_NAME']}?{$_SERVER['QUERY_STRING']}" ?>">
     <div class="form-group">

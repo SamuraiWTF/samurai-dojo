@@ -2,11 +2,11 @@
 
 <?php
 $query = "SELECT * FROM `hitlog`";
-$result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);;
+$result = db_query($conn, $query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);;
 //echo $result;
 echo '<TABLE border="1" width="100%">';
    echo "<TR><TD><B>Hostname</B></font></TD><TD><B>IP</B></TD><TD><B>Browser Agent</B></TD><TD><B>Page Viewed</B></TD><TD><B>Date/Time</B></TD></TR>";
-while($row = $result->fetch_assoc())
+while($row = db_fetch_assoc($result))
 {
 echo "<TR><TD>{$row['hostname']}</TD><TD>{$row['ip']}</TD><TD>{$row['browser']}</TD><TD>{$row['referer']}</TD><TD>{$row['date']}</TD></TR>\n";
 }

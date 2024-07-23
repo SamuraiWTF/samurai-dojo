@@ -1,0 +1,17 @@
+# Dockerfile.dojo-basic
+FROM php:7.4.27-apache-bullseye
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    sqlite3 \
+    libsqlite3-dev \
+    dnsutils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the environment variable for database type
+ENV DOJO_DB_TYPE=sqlite
+
+COPY ./src/basic /var/www/html
+LABEL org.opencontainers.image.source=https://github.com/SamuraiWTF/samurai-dojo
+LABEL org.opencontainers.image.description="Basic PHP 7.4.27-apache-bullseye image with dojo-basic with sqlite support."
+LABEL org.opencontainers.image.licenses="lgpl"
