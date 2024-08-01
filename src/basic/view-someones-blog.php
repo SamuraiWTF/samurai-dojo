@@ -4,13 +4,13 @@
 echo "<form method=\"POST\" action=\"" .$_SERVER['SCRIPT_NAME'] . "?" . $_SERVER['QUERY_STRING'] . "\">";
 
 $query  = "SELECT * FROM accounts";
-$result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);;
+$result = db_query($conn, $query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);;
 //echo $result;
 echo '<div class="blog-controls">';
 echo '<p>Show only:<select size="1" name="show_only_user">';
 echo '<option value="">Choose someone</option>\n';
 echo '<option value="Show All Users">Show All Users</option>\n';
-while($row = $result->fetch_assoc())
+while($row = db_fetch_assoc($result))
 {
     echo '<option value="' . $row['username'] . '">' . $row['username'] . '</option>\n';
 
@@ -32,10 +32,10 @@ if ($showonlyuser  <> "") {
 			ORDER BY date DESC
 			LIMIT 0 , 100";
 			
-	$result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);;
+	$result = db_query($conn, $query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);;
 	//echo $result;
 	echo '<p>Entries:</p>';
-	while($row = $result->fetch_assoc())
+	while($row = db_fetch_assoc($result))
 	{
 	echo "<p><b>{$row['blogger_name']}:</b>({$row['date']})<br>{$row['comment']}</p>";
 	}

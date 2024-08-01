@@ -1,6 +1,9 @@
-<?php
+<?php ob_start();
 include 'config.inc';
 include 'opendb.inc';
+
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 // Grab inputs
 $username = $_REQUEST["user_name"];
@@ -14,8 +17,8 @@ if ($page === "login.php") {
 
 if ($username <> "" and $password <> "") {
 	$query  = "SELECT * FROM accounts WHERE username='". $username ."' AND password='".stripslashes($password)."'";
-	$result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);
-	if ($result->num_rows > 0) {
+	$result = db_query($conn, $query);
+	if (db_num_rows($result) > 0) {
 		// flag the cookie as secure only if it is accessed via SSL
 		$ssl = FALSE;
 		if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
@@ -27,8 +30,9 @@ if ($username <> "" and $password <> "") {
                 $value = md5($rndm);
                 setcookie("sessionid", $value, 0, "/", "", $ssl, TRUE);
 		// set uid to appropriate user
-		$row = $result->fetch_assoc();
-		setcookie("uid", base64_encode($row['cid']), 0, "/", "", $ssl, FALSE); 
+		$row = db_fetch_assoc($result);
+		setcookie("uid", base64_encode($row['cid']), 0, "/", "", $ssl, FALSE);
+
 		$failedloginflag=0;
 		if ($_REQUEST["returnURL"] <> "") {
 			echo '<meta http-equiv="refresh" content="0;url=' . $_REQUEST["returnURL"] , '">';
@@ -36,7 +40,6 @@ if ($username <> "" and $password <> "") {
 			echo '<meta http-equiv="refresh" content="0;url=index.php">';
 		}
 
-		
 	} else {
 		$failedloginflag=1;
 	}
@@ -60,7 +63,7 @@ switch ($dosomething) {
 		}		
 		break;
 }
-
+ob_end_flush();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html lang="en">
@@ -91,11 +94,10 @@ if ($dosomething  == "logout") {
 		-->
 		<?php
 		$query  = "SELECT * FROM accounts WHERE cid='".base64_decode($_COOKIE["uid"])."'";
-		$result = $conn->query($query) or die(mysqli_error($conn) . '<p><b>SQL Statement:</b>' . $query);
-		echo mysqli_error($conn);
-		echo mysqli_error($conn);
-		if ($result->num_rows > 0) {
-			while($row = $result->fetch_assoc())
+		$result = db_query($conn, $query);
+
+		if (db_num_rows($result) > 0) {
+			while($row = db_fetch_assoc($result))
 			{
 				$logged_in_user = $row['username'];
 				$logged_in_usersignature = $row['mysignature'];				

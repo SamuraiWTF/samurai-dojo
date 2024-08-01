@@ -2,3 +2,4 @@
 ubuntu*.log
 *.retry
 .idea
+sqlite_data

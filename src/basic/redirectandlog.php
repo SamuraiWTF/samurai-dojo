@@ -9,7 +9,7 @@ $query = "INSERT INTO hitlog(hostname, ip, browser, referer, date) VALUES ('".
 	"Redirected user to: " . $forwardurl . "', ".
 	" now() )";
 //echo $query;
-$result = $conn->query($query);
+$result = db_query($conn, $query);
 echo mysqli_error($conn );
 
 mysqli_close($conn);

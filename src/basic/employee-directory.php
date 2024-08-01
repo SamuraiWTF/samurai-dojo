@@ -13,7 +13,7 @@ function getEmployees($sortColumn = "last_name", $sortDirection = "DESC") {
               ORDER BY " . $sortOrder;
 
     // Execute the query
-    $result = $conn->query($query);
+    $result = db_query($conn, $query);
 
     // Check for errors without exposing the query
     if (!$result) {
@@ -22,7 +22,7 @@ function getEmployees($sortColumn = "last_name", $sortDirection = "DESC") {
     }
 
     $employees = [];
-    while ($row = $result->fetch_assoc()) {
+    while ($row = db_fetch_assoc($result)) {
         $employees[] = $row;
     }
     return $employees;

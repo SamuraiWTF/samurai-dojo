@@ -1,8 +1,13 @@
 # Dockerfile.dojo-basic
 FROM php:7.4.27-apache-bullseye
 
-RUN docker-php-ext-install pdo_mysql mysqli
-RUN apt-get update && apt-get install -y dnsutils
+RUN docker-php-ext-install pdo_mysql mysqli \
+    && apt-get update \
+    && apt-get install -y dnsutils
+
+# Set the environment variable for database type
+ENV DOJO_DB_TYPE=mysql
+
 COPY ./src/basic /var/www/html
 LABEL org.opencontainers.image.source=https://github.com/SamuraiWTF/samurai-dojo
 LABEL org.opencontainers.image.description="Basic PHP 7.4.27-apache-bullseye image with dojo-basic and mysql support."
