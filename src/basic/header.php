@@ -2,8 +2,8 @@
 include 'config.inc';
 include 'opendb.inc';
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 // Grab inputs
 $username = $_REQUEST["user_name"];
