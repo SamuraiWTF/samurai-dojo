@@ -34,6 +34,16 @@ function db_query($conn, $query) {
     return $result;
 }
 
+function db_now() {
+    global $db_type;
+
+    if ($db_type === 'mysql') {
+        return "NOW()";
+    } else {
+        return "datetime('now')";
+    }
+}
+
 function db_num_rows($result) {
     global $db_type;
 

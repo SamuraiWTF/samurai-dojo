@@ -18,7 +18,7 @@ if ($inputfromform  <> "") {
 	$query = "INSERT INTO blogs_table(blogger_name, comment, date) VALUES ('".
 		$logged_in_user . "', '".
 		$inputfromform  . "', " .
-		" now() )";
+		db_now() . ")";
 
 $result = db_query($conn, $query);
 }
