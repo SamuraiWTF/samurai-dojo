@@ -1,6 +1,6 @@
 <div class="page-title"><h2>Hacker text files of old</h2></div>
 
-Take the time to read some of these great old school hacker text files. Just choose one form the list and submit.
+TTake the time to read some of these great old school hacker text files. Just choose one form the list and submit.
 
 <?php
 echo "<form method=\"POST\" action=\"" .$_SERVER['SCRIPT_NAME'] . "?" . $_SERVER['QUERY_STRING'] . "\">";
@@ -24,10 +24,40 @@ echo "<form method=\"POST\" action=\"" .$_SERVER['SCRIPT_NAME'] . "?" . $_SERVER
 // Grab inputs
 $textfilename=$_REQUEST["text_file_name"];
 
-if ($textfilename <>"") {
-	$handle = fopen($textfilename, "r");
-	echo stream_get_contents($handle);
-	fclose($handle);
+if ($textfilename != "") {
+    // echo "Attempting to open file: $textfilename<br>";
+
+    // Check if it's a full URL or just a filename
+    if (strpos($textfilename, 'http://') !== 0 && strpos($textfilename, 'https://') !== 0) {
+        $textfilename = "http://" . $_SERVER['HTTP_HOST'] . "/readingroom/" . $textfilename;
+    }
+
+    // echo "Full URL: $textfilename<br>";
+
+    // Use cURL to fetch the content
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $textfilename);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5); // 5 seconds timeout
+
+    $content = curl_exec($ch);
+
+    if ($content !== false) {
+        echo "<pre>" . htmlspecialchars($content) . "</pre>";
+    } else {
+        echo "Failed to load the file. Error: " . curl_error($ch) . "<br>";
+        echo "Error number: " . curl_errno($ch) . "<br>";
+
+        // Additional debugging information
+        echo "Server IP: " . $_SERVER['SERVER_ADDR'] . "<br>";
+        echo "Server Name: " . $_SERVER['SERVER_NAME'] . "<br>";
+        echo "HTTP Host: " . $_SERVER['HTTP_HOST'] . "<br>";
+    }
+
+    curl_close($ch);
+} else {
+    echo "No filename provided.<br>";
 }
 ?>
 </pre>

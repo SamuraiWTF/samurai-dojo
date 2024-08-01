@@ -47,6 +47,9 @@ services:
       - "33443:443"
     environment:
       - DOJO_DB_TYPE=sqlite
+    extra_hosts:
+      - "dojo-basic:127.0.0.2"
+      - "dojo-basic.wtf:127.0.0.2"
     volumes:
       - ./sqlite_data:/var/www/html/db
       - ./src/basic:/var/www/html
