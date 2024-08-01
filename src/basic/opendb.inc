@@ -40,7 +40,7 @@ function db_now() {
     if ($db_type === 'mysql') {
         return "NOW()";
     } else {
-        return "datetime('now')";
+        return "date('now')";
     }
 }
 
