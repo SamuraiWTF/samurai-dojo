@@ -3,6 +3,7 @@
 
 function db_connect() {
     global $db_type, $dbhost, $dbuser, $dbpass, $dbname;
+    $db_file = '/var/www/html/db/' . $dbname . '.sqlite';
 
     if ($db_type === 'mysql') {
         $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
@@ -10,7 +11,7 @@ function db_connect() {
             die("Connection failed: " . $conn->connect_error);
         }
     } else {
-        $conn = new SQLite3('/var/www/html/db/' . $dbname . '.sqlite');
+        $conn = new SQLite3($db_file);
     }
 
     return $conn;

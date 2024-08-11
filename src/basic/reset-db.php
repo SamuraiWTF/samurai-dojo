@@ -34,6 +34,7 @@ if ($db_type === 'mysql') {
     $conn->select_db($dbname);
 } else {
     echo("<br>Setting up SQLite...");
+
         $db_file = '/var/www/html/db/' . $dbname . '.sqlite';
 
         // Delete the existing database file if it exists
