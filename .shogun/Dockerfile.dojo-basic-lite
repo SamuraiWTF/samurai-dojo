@@ -11,7 +11,15 @@ RUN apt-get update && apt-get install -y \
 # Set the environment variable for database type
 ENV DOJO_DB_TYPE=sqlite
 
+# Create the db directory and set permissions
+RUN mkdir -p /var/www/html/db && \
+    chmod 755 /var/www/html/db
+
 COPY ./src/basic /var/www/html
+
+# Run reset-db.php script
+RUN php /var/www/html/reset-db.php
+
 LABEL org.opencontainers.image.source=https://github.com/SamuraiWTF/samurai-dojo
 LABEL org.opencontainers.image.description="Basic PHP 7.4.27-apache-bullseye image with dojo-basic with sqlite support."
 LABEL org.opencontainers.image.licenses="lgpl"
