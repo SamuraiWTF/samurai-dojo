@@ -1,4 +1,8 @@
 <?php
+$db_type = getenv('DOJO_DB_TYPE') ?: 'mysql';
+
+if ($db_type === 'mysql') {
+    // Original MySQL code (unchanged)
     if (!empty($_POST["username"])) {
         $dbconn = mysqli_connect("scavengerdb", "root", "samurai") or die(mysqli_error());
         mysqli_select_db($dbconn, "samurai_dojo_scavenger");
@@ -9,9 +13,34 @@
             exit();
         }
     }
+} else {
+    if (!empty($_POST["username"])) {
+        $sqlite_db = '/var/www/html/db/scavenger.sqlite';
+        $db = new SQLite3($sqlite_db);
+
+        $query = "SELECT * FROM partners_data WHERE username = '" . $_POST["username"] . "'";
+        $resultset = $db->query($query);
+
+        $result = $resultset->fetchArray(SQLITE3_ASSOC);
+
+        if ($result !== false) {
+            if ($_POST["password"] == $result["password"]) {
+                header("Location: partner_main.php?username=".$result["username"]);
+                exit();
+            } else {
+                $error = "Invalid password";
+            }
+        } else {
+            $error = "User not found";
+        }
+
+        $db->close();
+    }
+}
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	
+
 <!-- ==========================================================	-->
 <!--	Created by Devit Schizoper                          	-->
 <!--	Created HomePages http://LoadFoo.starzonewebhost.com   	-->
