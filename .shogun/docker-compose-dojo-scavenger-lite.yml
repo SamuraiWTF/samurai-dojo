@@ -1,0 +1,10 @@
+version: '3'
+services:
+  dojo-scavenger-lite:
+    build:
+      context: ..
+      dockerfile: .shogun/Dockerfile.dojo-scavenger-lite
+    ports:
+      - "8081:80"
+    environment:
+      - DOJO_DB_TYPE=sqlite
