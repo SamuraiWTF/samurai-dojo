@@ -13,7 +13,7 @@ ENV DOJO_DB_TYPE=sqlite
 
 # Create the db directory and set permissions
 RUN mkdir -p /var/www/html/db && \
-    chmod 755 /var/www/html/db
+    chmod 777 /var/www/html/db
 
 COPY ./src/basic /var/www/html
 
